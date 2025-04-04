@@ -1,6 +1,6 @@
 // Ações:
 //Criar item com subtotal
-async function createItemWithSubTotal(itemId, name, price, quantity) {
+async function createItem(itemId, name, price, quantity) {
   return {
     id: itemId,
     name: name,
@@ -10,4 +10,4 @@ async function createItemWithSubTotal(itemId, name, price, quantity) {
   };
 }
 
-export { createItemWithSubTotal };
+export { createItem };

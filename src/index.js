@@ -1,20 +1,46 @@
-import { createItemWithSubTotal } from "./services/item.js";
+import * as cartService from "./services/cart.js";
+import * as itemService from "./services/item.js";
+import { createItem } from "./services/item.js";
 
-const cart = [];
+const myCart = [];
+const myWhishList = [];
+// const myWallet = [];
 
-console.log("Shopping cart initialized.");
+console.log("Seu Carrinho de Compras: ");
 
-const item1 = await createItemWithSubTotal(
-  1,
-  "Mouse Attack Shark x11",
-  130.0,
-  1
-);
-const item2 = await createItemWithSubTotal(
-  2,
-  "Tecaldo Attack Shark M87PRO",
-  392.5,
-  2
-);
+// Criando itens
+const item1 = await createItem(1, "Mouse Attack Shark x11", 130.0, 1);
+const item2 = await createItem(2, "Teclado Attack Shark M87PRO", 392.5, 2);
+const item3 = await createItem(3, "Monitor LG 27", 575.0, 1);
+
+// Exibindo os subtotais dos itens criados
 console.log(item1.subtotal); // 130.0
 console.log(item2.subtotal); // 785.0
+console.log("\n");
+
+// Adicionando itens ao carrinho
+await cartService.addItemToCart(myCart, item1);
+await cartService.addItemToCart(myCart, item2);
+console.log("\n");
+
+// Adicionando itens à lista de desejos
+await cartService.addItemToCart(myWhishList, item3);
+console.log("\n");
+
+// Exibindo o subtotal do item 3
+console.log(item3.subtotal); // 575.0
+console.log("\n");
+
+// Exibindo o valor total dos itens do carrinho
+await cartService.getCartTotal(myCart); // 915.0;
+console.log("\n");
+
+await cartService.deleteItemFromCart(myCart, 2); // Deletando item2 do carrinho
+await cartService.getCartTotal(myCart); // Exibindo o valor total do carrinho após a exclusão do item2 // 130.0
+console.log("\n");
+
+// Exibindo o valor total da lista de desejos
+await cartService.getCartTotal(myWhishList); // 575.0
+
+// Exibindo os itens do carrinho
+await cartService.displayCartItems(myCart); // Exibindo os itens do carrinho
