@@ -5,8 +5,8 @@ async function addItemToCart(userCart, item) {
   console.log(`Item ${item.id} adicionado ao carrinho.`);
   return userCart;
 }
-// - Deletar item do carrinho - Exclui o item do carrinho
-async function deleteItemFromCart(userCart, itemId) {
+// - Remover item do carrinho - Diminui uma unidade do item
+async function removeItemFromCart(userCart, itemId) {
   const itemIndex = userCart.findIndex((item) => item.id === itemId);
   if (itemIndex !== -1) {
     userCart.splice(itemIndex, 1);
@@ -16,9 +16,16 @@ async function deleteItemFromCart(userCart, itemId) {
   }
   return userCart;
 }
-
-// - Remover item do carrinho - Diminui uma unidade do item
-async function removeItemFromCart(userCart, itemId) {}
+// - Deletar item do carrinho - Exclui o item do carrinho
+async function deleteItemFromCart(userCart, itemId) {
+  const deleteIndex = itemId - 1; // Ajusta o índice para corresponder ao array
+  // Verifica se o índice é válido
+  //se é maior que 0 e menor que o tamanho do carrinho
+  if (itemId >= 0 && itemId < userCart.length) {
+    userCart.splice(itemId, 1); // Remove o item do carrinho
+    console.log(`Item ${itemId} removido do carrinho.`);
+  }
+}
 
 // - Atualizar quantidade de um item no carrinho
 async function updateItemQuantityInCart(userCart, itemId, quantity) {}
