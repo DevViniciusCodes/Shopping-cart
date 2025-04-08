@@ -9,7 +9,7 @@ const myWhishList = []; // Criando a lista de desejos
 console.log("Seu Carrinho de Compras: ");
 
 // Criando itens
-const item1 = await createItem(1, "Mouse Attack Shark x11", 130.0, 2);
+const item1 = await createItem(1, "Mouse Attack Shark x11", 130.0, 1);
 const item2 = await createItem(2, "Teclado Attack Shark M87PRO", 392.5, 2);
 const item3 = await createItem(3, "Monitor LG 27", 575.0, 1);
 
@@ -35,14 +35,14 @@ console.log("\n");
 await cartService.getCartTotal(myCart); // 915.0;
 console.log("\n");
 
-await cartService.removeItemFromCart(myCart, 1); // Removendo item1 do carrinho
+await cartService.removeItemFromCart(myCart, item2.id); // Removendo uma unidade do item2 do carrinho
 await cartService.getCartTotal(myCart); // Exibindo o valor total do carrinho após a exclusão do item2 // 130.0
 console.log("\n");
 
 // Exibindo o valor total da lista de desejos
 await cartService.getCartTotal(myWhishList); // 575.0
 
-await cartService.deleteItemFromCart(myCart, 1); // Delete item2 do carrinho
+await cartService.deleteItemFromCart(myCart, item1.id); // Deletando o item1 do carrinho
 
 // Exibindo os itens do carrinho
 await cartService.displayCartItems(myCart); // Exibindo os itens do carrinho
